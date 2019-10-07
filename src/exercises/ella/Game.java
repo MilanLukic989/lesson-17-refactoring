@@ -18,389 +18,219 @@ import javax.swing.Timer;
 
 public class Game implements MouseListener, ActionListener {
 
-	Timer timer = new Timer(1000, this);
-	int time = 0;
-	JFrame frame = new JFrame();
-	PicturePanel panel = new PicturePanel();
-	SideBar bar = new SideBar();
-	JPanel mainPanel = new JPanel();
-	Emojis emoji = new Emojis();
-	int gameNumber = 0;
-	boolean checkMe = false;
-	boolean checkMe2 = false;
-	boolean checkMe3 = false;
-	boolean checkMe4 = false;
-	boolean checkMe5 = false;
-	boolean checkMe6 = false;
-	boolean checkMe7 = false;
-	boolean checkMeL2 = false;
-	boolean checkMeL22 = false;
-	boolean checkMeL23 = false;
-	boolean checkMeL24 = false;
-	boolean checkMeL25 = false;
-	boolean checkMeL26 = false;
-	boolean checkMeL27 = false;
-	JButton balloonButton;
-	JButton sparklesButton;
-	JButton backpackButton;
-	JButton diamondButton;
-	JButton pawprintsButton;
-	JButton snakeButton;
-	JButton ringButton;
-	JButton appleButton;
-	JButton bowButton;
-	JButton keyButton;
-	JButton cloudButton;
-	JButton chickenButton;
-	JButton roseButton;
-	JButton earthButton;
-	JButton cactusButton;
+	
+	private JFrame frameGame;
+	private PicturePanel panPicture;
+	private SideBar bar;
+	private JPanel panMain;
+	private Emojis emoji;
+	
+	private Timer timer;
+	private int time, gameNumber;
+	
+	private boolean checkMe1, checkMe2, checkMe3, checkMe4, checkMe5, checkMe6, checkMe7, checkMeL21,
+	checkMeL22, checkMeL23, checkMeL24, checkMeL25, checkMeL26, checkMeL27;
+	
+	private JButton btnBalloon, btnSparkles, btnBackpack, btnDiamond, btnPawprints, btnSnake, btnRing,
+	btnApple, btnBow, btnKey, btnCloud, btnChicken, btnRose, btnEarth, btnCactus;
 
 	public static void main(String[] args) {
-
 		Game ellasGame = new Game();
-
 	}
 
-	Game() {
-
+	public Game() {
+		frameGame = new JFrame();
+		panPicture = new PicturePanel();
+		bar = new SideBar();
+		panMain = new JPanel();
+		emoji = new Emojis();
+		
+		timer = new Timer(1000, this);
+		time = 0;
+		gameNumber = 0;
+		
+		checkMe1 = checkMe2 = checkMe3 = checkMe4 = checkMe5 = checkMe6 = checkMe7 = checkMeL21 =
+		checkMeL22 = checkMeL23 = checkMeL24 = checkMeL25 = checkMeL26 = checkMeL27 = false;
+		
 		setup();
 		timer.start();
-
 	}
 
 
-	void setup() {
-
+	private void setup() {
 		// System.out.println(xList);
-		frame.setSize(1800, 1000);
-		// mainPanel.setPreferredSize(new Dimension(500, 500));
-		frame.setLayout(new BorderLayout());
-		mainPanel.add(panel, BorderLayout.WEST);
-		mainPanel.add(bar, BorderLayout.EAST);
-		frame.add(mainPanel);
-		panel.setPreferredSize(new Dimension(1500, 1000));
-		frame.setVisible(true);
-		frame.addMouseListener(this);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frameGame.setSize(1800, 1000);
+		// panMain.setPreferredSize(new Dimension(500, 500));
+		frameGame.setLayout(new BorderLayout());
+		panMain.add(panPicture, BorderLayout.WEST);
+		panMain.add(bar, BorderLayout.EAST);
+		frameGame.add(panMain);
+		panPicture.setPreferredSize(new Dimension(1500, 1000));
+		panPicture.setLayout(null);
+		frameGame.setVisible(true);
+		frameGame.addMouseListener(this);
+		frameGame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		createLevelOneButtons();
-
+	}
+	
+	private JButton createButton(String fileName, int xPosition, int yPosition) throws IOException {
+		Image img = ImageIO.read(getClass().getResource(fileName));
+		JButton btnTmp = new JButton(new ImageIcon(img));
+		btnTmp.addMouseListener(this);
+		btnTmp.setBorder(null);
+		btnTmp.setBounds(xPosition, yPosition, 30, 30);
+		return btnTmp;
 	}
 
-	void createLevelOneButtons() {
+	private void createLevelOneButtons() {
 		try {
-			addButton("balloon.png", 698, 336);
+			btnBalloon = createButton("img/balloon.png", 698, 336);
+			btnSparkles = createButton("img/sparkles.png", 680, 756);
+			btnBackpack = createButton("img/backpack.png", 840, 770);
+			btnDiamond = createButton("img/diamond.png", 315, 900);
+			btnPawprints = createButton("img/pawprints.png", 1079, 782);
+			btnSnake = createButton("img/snake.png", 1100, 420);
+			btnRing = createButton("img/WeddingRing.png",1460, 500);
 		} catch (Exception ex) {
 			System.out.println(ex);
 		}
+		panPicture.add(btnBalloon);
+		panPicture.add(btnSparkles);
+		panPicture.add(btnBackpack);
+		panPicture.add(btnDiamond);
+		panPicture.add(btnPawprints);
+		panPicture.add(btnSnake);
+		panPicture.add(btnRing);
+		panPicture.repaint();
+	}
+	
+	
+
+	void createLevelTwoButtons() {
 		
 		try {
-			addButton("diamond.png", 315, 900);
-
+			btnApple = createButton("img/apple.png", 503, 931);
+			btnBow = createButton("img/bow.png", 953, 903);
+			btnCloud = createButton("img/cloud.png", 460, 529);
+			btnRose = createButton("img/rose.png", 719, 664);
+			btnChicken = createButton("img/chicken.png", 351, 575);
+			btnKey = createButton("img/key.png", 953, 903);
+			btnEarth = createButton("img/earth.png", 1224, 879);
+			btnCactus = createButton("img/cactus.png", 1224, 879);
 		} catch (Exception ex) {
 			System.out.println(ex);
 		}
-		try {
-			Image pawprints = ImageIO.read(getClass().getResource("pawprints.png"));
-			pawprintsButton = new JButton(new ImageIcon(pawprints));
-			panel.setLayout(null);
-			panel.add(pawprintsButton);
-			pawprintsButton.addMouseListener(this);
-			pawprintsButton.setBorder(null);
-			pawprintsButton.setBounds(1079, 782, 30, 30);
-		} catch (Exception ex) {
-			System.out.println(ex);
-		}
-		try {
-			Image ring = ImageIO.read(getClass().getResource("WeddingRing.png"));
-			ringButton = new JButton(new ImageIcon(ring));
-			panel.setLayout(null);
-			panel.add(ringButton);
-			ringButton.addMouseListener(this);
-			ringButton.setBorder(null);
-			ringButton.setBounds(1460, 500, 30, 30);
-		} catch (Exception ex) {
-			System.out.println(ex);
-		}
-		try {
-			Image snake = ImageIO.read(getClass().getResource("snake.png"));
-			snakeButton = new JButton(new ImageIcon(snake));
-			panel.setLayout(null);
-			panel.add(snakeButton);
-			snakeButton.addMouseListener(this);
-			snakeButton.setBorder(null);
-			snakeButton.setBounds(1100, 420, 30, 30);
-		} catch (Exception ex) {
-			System.out.println(ex);
-		}
-		try {
-			Image backpack = ImageIO.read(getClass().getResource("backpack.png"));
-			backpackButton = new JButton(new ImageIcon(backpack));
-			panel.setLayout(null);
-			panel.add(backpackButton);
-			backpackButton.addMouseListener(this);
-			backpackButton.setBorder(null);
-			backpackButton.setBounds(840, 770, 30, 30);
-		} catch (Exception ex) {
-			System.out.println(ex);
-		}
-		try {
-			Image sparkles = ImageIO.read(getClass().getResource("sparkles.png"));
-			sparklesButton = new JButton(new ImageIcon(sparkles));
-			panel.setLayout(null);
-			panel.add(sparklesButton);
-			sparklesButton.addMouseListener(this);
-			sparklesButton.setBorder(null);
-			sparklesButton.setBounds(680, 756, 30, 30);
-		} catch (Exception ex) {
-			System.out.println(ex);
-		}
-	}
-
-	private void addButton(String fileName, int xPosition, int yPosition) throws IOException {
-		Image balloon = ImageIO.read(getClass().getResource(fileName));
-		balloonButton = new JButton(new ImageIcon(balloon));
-		panel.setLayout(null);
-		panel.add(balloonButton);
-		balloonButton.addMouseListener(this);
-		balloonButton.setBorder(null);
-		balloonButton.setBounds(xPosition, yPosition, 30, 30);
-	}
-
-	void levelTwoButtons() {
-
-		try {
-			Image apple = ImageIO.read(getClass().getResource("apple.png"));
-			appleButton = new JButton(new ImageIcon(apple));
-			panel.setLayout(null);
-			panel.add(appleButton);
-			appleButton.addMouseListener(this);
-			appleButton.setBorder(null);
-			appleButton.setBounds(503, 931, 30, 30);
-		} catch (Exception ex) {
-			System.out.println(ex);
-		}
-		try {
-			Image bow = ImageIO.read(getClass().getResource("bow.png"));
-			bowButton = new JButton(new ImageIcon(bow));
-			panel.setLayout(null);
-			panel.add(bowButton);
-			bowButton.addMouseListener(this);
-			bowButton.setBorder(null);
-			bowButton.setBounds(953, 903, 30, 30);
-		} catch (Exception ex) {
-			System.out.println(ex);
-		}
-		try {
-			Image cloud = ImageIO.read(getClass().getResource("cloud.png"));
-			cloudButton = new JButton(new ImageIcon(cloud));
-			panel.setLayout(null);
-			panel.add(cloudButton);
-			cloudButton.addMouseListener(this);
-			cloudButton.setBorder(null);
-			cloudButton.setBounds(460, 529, 30, 30);
-		} catch (Exception ex) {
-			System.out.println(ex);
-		}
-		try {
-			Image rose = ImageIO.read(getClass().getResource("rose.png"));
-			roseButton = new JButton(new ImageIcon(rose));
-			panel.setLayout(null);
-			panel.add(roseButton);
-			roseButton.addMouseListener(this);
-			roseButton.setBorder(null);
-			roseButton.setBounds(719, 664, 30, 30);
-		} catch (Exception ex) {
-			System.out.println(ex);
-		}
-		try {
-			Image chicken = ImageIO.read(getClass().getResource("chicken.png"));
-			chickenButton = new JButton(new ImageIcon(chicken));
-			panel.setLayout(null);
-			panel.add(chickenButton);
-			chickenButton.addMouseListener(this);
-			chickenButton.setBorder(null);
-			chickenButton.setBounds(351, 575, 30, 30);
-		} catch (Exception ex) {
-			System.out.println(ex);
-		}
-		try {
-			Image key = ImageIO.read(getClass().getResource("key.png"));
-			keyButton = new JButton(new ImageIcon(key));
-			panel.setLayout(null);
-			panel.add(keyButton);
-			keyButton.addMouseListener(this);
-			keyButton.setBorder(null);
-			keyButton.setBounds(953, 903, 30, 30);
-		} catch (Exception ex) {
-			System.out.println(ex);
-		}
-		try {
-			Image earth = ImageIO.read(getClass().getResource("earth.png"));
-			earthButton = new JButton(new ImageIcon(earth));
-			panel.setLayout(null);
-			panel.add(earthButton);
-			earthButton.addMouseListener(this);
-			earthButton.setBorder(null);
-			earthButton.setBounds(1224, 879, 30, 30);
-		} catch (Exception ex) {
-			System.out.println(ex);
-		}
-		try {
-			Image cactus = ImageIO.read(getClass().getResource("cactus.png"));
-			cactusButton = new JButton(new ImageIcon(cactus));
-			panel.setLayout(null);
-			panel.add(cactusButton);
-			cactusButton.addMouseListener(this);
-			cactusButton.setBorder(null);
-			cactusButton.setBounds(578, 588, 30, 30);
-		} catch (Exception ex) {
-			System.out.println(ex);
-		}
+		panPicture.add(btnApple);
+		panPicture.add(btnBow);
+		panPicture.add(btnCloud);
+		panPicture.add(btnRose);
+		panPicture.add(btnChicken);
+		panPicture.add(btnSnake);
+		panPicture.add(btnEarth);
+		panPicture.add(btnCactus);
+		panPicture.repaint();
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
 		System.out.println(e.getX());
 		System.out.println(e.getY());
-		// if(e.getX() <= 10){
-		// ringName.setText("Found me!");
-		// ringName.setBounds(foundMeX, findMeY + 40, foundMeWidth,
-		// foundMeHeight);
-
-		// }
-		// if (e.getX() >= sparklesX - 15 && e.getX() <= sparklesX + 15 &&
-		// e.getY() <= sparklesY + 15 && e.getY() >= sparklesY - 15) {
-		// bar.foundSparkles();
-		// checkMe4 = true;
-		// } else if (e.getX() >= ringX - 15 && e.getX() <= ringX + 15 &&
-		// e.getY() <= ringY + 15 && e.getY() >= ringY - 15) {
-		// bar.foundRing();
-		// checkMe2 = true;
-		// } else if (e.getX() >= backpackX - 15 && e.getX() <= backpackX + 15
-		// && e.getY() <= backpackY + 15 && e.getY() >= backpackY - 15) {
-		// bar.foundBackpack();
-		// checkMe3 = true;
-		// } else if (e.getX() >= pawprintX - 15 && e.getX() <= pawprintX + 15
-		// && e.getY() <= pawprintY + 15 && e.getY() >= pawprintY - 15) {
-		// bar.foundPawprint();
-		// checkMe5 = true;
-		// } else if (e.getX() >= diamondX - 15 && e.getX() <= diamondX + 15 &&
-		// e.getY() <= diamondY + 15 && e.getY() >= diamondY - 15) {
-		// bar.foundDiamond();
-		// checkMe6 = true;
-		// } else if (e.getX() >= snakeX - 15 && e.getX() <= snakeX + 15 &&
-		// e.getY() <= snakeY + 15 && e.getY() >= snakeY - 15) {
-		// bar.foundSnake();
-		// checkMe = true;
-		// }
-		// if (checkMe == true && checkMe2 == true && checkMe3 == true &&
-		// checkMe4 == true && checkMe5 == true && checkMe6 == true) {
-		// JOptionPane.showMessageDialog(null, "Congratulations! You found all
-		// the pictures! \n Ready for level 2?");
-		// panel.nextLevelPicture();
-		// bar.nextLevelBar();
-		// gameNumber += 1;
-		// }
-
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		if (e.getSource() == (balloonButton)) {
-			balloonButton.setVisible(false);
+		if (e.getSource() == btnBalloon) {
+			btnBalloon.setVisible(false);
 			bar.foundBalloon();
-			checkMe = true;
+			checkMe1 = true;
 		}
-		if (e.getSource() == (pawprintsButton)) {
-			pawprintsButton.setVisible(false);
+		if (e.getSource() == btnPawprints) {
+			btnPawprints.setVisible(false);
 			bar.foundPawprint();
 			checkMe2 = true;
 		}
-		if (e.getSource() == (ringButton)) {
-			ringButton.setVisible(false);
+		if (e.getSource() == btnRing) {
+			btnRing.setVisible(false);
 			bar.foundRing();
 			checkMe3 = true;
 		}
-		if (e.getSource() == (snakeButton)) {
-			snakeButton.setVisible(false);
+		if (e.getSource() == btnSnake) {
+			btnSnake.setVisible(false);
 			bar.foundSnake();
 			checkMe4 = true;
 		}
-		if (e.getSource() == (backpackButton)) {
-			backpackButton.setVisible(false);
+		if (e.getSource() == btnBackpack) {
+			btnBackpack.setVisible(false);
 			bar.foundBackpack();
 			checkMe5 = true;
 		}
-		if (e.getSource() == (sparklesButton)) {
-			sparklesButton.setVisible(false);
+		if (e.getSource() == btnSparkles) {
+			btnSparkles.setVisible(false);
 			bar.foundSparkles();
 			checkMe6 = true;
 		}
-		if (e.getSource() == (diamondButton)) {
-			diamondButton.setVisible(false);
+		if (e.getSource() == btnDiamond) {
+			btnDiamond.setVisible(false);
 			bar.foundDiamond();
 			checkMe7 = true;
 		}
 
-		if (checkFoundAll()) {
+		if (isStageClear()) {
 			timer.stop();
 			JOptionPane.showMessageDialog(null, "Congratulations! You found all the pictures! \n You finished the puzzle in: " + time + " seconds. \n Ready for level 2?");
-			panel.nextLevelPicture();
+			panPicture.loadNextLevelPicture();
 			bar.nextLevelBar();
 			gameNumber += 1;
-			checkMe = false;
+			checkMe1 = false;
 			checkMe2 = false;
 			checkMe3 = false;
 			checkMe4 = false;
 			checkMe5 = false;
 			checkMe6 = false;
 			checkMe7 = false;
-			levelTwoButtons();
+			createLevelTwoButtons();
 			time = 0;
 			timer.restart();
 
 		}
 
-		if (e.getSource() == (appleButton)) {
-			appleButton.setVisible(false);
+		if (e.getSource() == (btnApple)) {
+			btnApple.setVisible(false);
 			bar.foundApple();
-			checkMeL2 = true;
+			checkMeL21 = true;
 		}
-		if (e.getSource() == (bowButton)) {
-			bowButton.setVisible(false);
+		if (e.getSource() == (btnBow)) {
+			btnBow.setVisible(false);
 			bar.foundBow();
 			checkMeL22 = true;
 		}
-		if (e.getSource() == (roseButton)) {
-			roseButton.setVisible(false);
+		if (e.getSource() == (btnRose)) {
+			btnRose.setVisible(false);
 			bar.foundRose();
 			checkMeL23 = true;
 		}
-		if (e.getSource() == (cloudButton)) {
-			cloudButton.setVisible(false);
+		if (e.getSource() == (btnCloud)) {
+			btnCloud.setVisible(false);
 			bar.foundCloud();
 			checkMeL24 = true;
 		}
-		if (e.getSource() == (chickenButton)) {
-			chickenButton.setVisible(false);
+		if (e.getSource() == (btnChicken)) {
+			btnChicken.setVisible(false);
 			bar.foundChicken();
 			checkMeL25 = true;
 		}
-		if (e.getSource() == (earthButton)) {
-			earthButton.setVisible(false);
+		if (e.getSource() == (btnEarth)) {
+			btnEarth.setVisible(false);
 			bar.foundEarth();
 			checkMeL26 = true;
 		}
-		if (e.getSource() == (cactusButton)) {
-			cactusButton.setVisible(false);
+		if (e.getSource() == (btnCactus)) {
+			btnCactus.setVisible(false);
 			bar.foundCactus();
 			checkMeL27 = true;
 		}
 		
-		if (checkMeL2 == true && checkMeL22 == true && checkMeL23 == true && checkMeL24 == true && checkMeL25 == true
+		if (checkMeL21 == true && checkMeL22 == true && checkMeL23 == true && checkMeL24 == true && checkMeL25 == true
 				&& checkMeL26 == true && checkMeL27 == true) {
 			timer.stop();
 			JOptionPane.showMessageDialog(null, "Congratulations! You found all the pictures! \n You finished the puzzle in: " + time + " seconds.");
@@ -408,8 +238,8 @@ public class Game implements MouseListener, ActionListener {
 		}
 	}
 
-	private boolean checkFoundAll() {
-		return checkMe == true && checkMe2 == true && checkMe3 == true && checkMe4 == true && checkMe5 == true
+	private boolean isStageClear() {
+		return checkMe1 == true && checkMe2 == true && checkMe3 == true && checkMe4 == true && checkMe5 == true
 				&& checkMe6 == true && checkMe7 == true;
 	}
 
@@ -432,7 +262,6 @@ public class Game implements MouseListener, ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		time += 1;
 		bar.showTime(time);
 	}

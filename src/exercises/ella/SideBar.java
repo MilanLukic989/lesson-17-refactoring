@@ -1,4 +1,5 @@
 package exercises.ella;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -12,6 +13,10 @@ import javax.swing.JPanel;
 
 public class SideBar extends JPanel implements ActionListener, KeyListener {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	JLabel barTitle = new JLabel("FIND:");
 	JLabel snakeName = new JLabel("snake");
 	JLabel ringName = new JLabel("ring");
@@ -28,7 +33,7 @@ public class SideBar extends JPanel implements ActionListener, KeyListener {
 	JLabel earthName = new JLabel("earth");
 	JLabel cactusName = new JLabel("cactus");
 	JLabel timeName = new JLabel("Time: 0");
-		
+
 	int foundMeX = 76;
 	int foundMeWidth = 275;
 	int foundMeHeight = 75;
@@ -43,9 +48,8 @@ public class SideBar extends JPanel implements ActionListener, KeyListener {
 	final int BAR2 = 1;
 	int currentBar = BAR1;
 
-	SideBar() {
+	public SideBar() {
 		setPreferredSize(new Dimension(285, 1000));
-		// bar.setBounds(1800, 900, 500, 500);
 		add(barTitle);
 		barTitle.setFont(new Font("Serif", Font.PLAIN, 45));
 		setLayout(null);
@@ -54,12 +58,9 @@ public class SideBar extends JPanel implements ActionListener, KeyListener {
 		setOpaque(true);
 		setBackground(Color.PINK);
 		repaint();
-
 	}
 
-	void objectNames() {
-
-		
+	private void objectNames() {
 		add(snakeName);
 		snakeName.setFont(new Font("Serif", Font.PLAIN, 30));
 		snakeName.setBounds(102, findMeY, 100, 75);
@@ -87,8 +88,7 @@ public class SideBar extends JPanel implements ActionListener, KeyListener {
 
 	}
 
-	void objectNamesLevelTwo() {
-
+	private void objectNamesLevelTwo() {
 		add(appleName);
 		appleName.setFont(new Font("Serif", Font.PLAIN, 30));
 		appleName.setBounds(102, findMeY, 100, 75);
@@ -113,7 +113,7 @@ public class SideBar extends JPanel implements ActionListener, KeyListener {
 
 	}
 
-	void nextLevelBar() {
+	public void nextLevelBar() {
 		currentBar += 1;
 		if (currentBar > BAR2) {
 			currentBar = BAR1;
@@ -128,95 +128,69 @@ public class SideBar extends JPanel implements ActionListener, KeyListener {
 			objectNamesLevelTwo();
 		}
 		repaint();
-
 	}
 
-	void foundSparkles() {
-
+	public void foundSparkles() {
 		sparkleName.setVisible(false);
-
 	}
 
-	void foundRing() {
-
+	public void foundRing() {
 		ringName.setVisible(false);
-
 	}
 
-	void foundBackpack() {
-
+	public void foundBackpack() {
 		backpackName.setVisible(false);
-
 	}
 
-	void foundPawprint() {
-
+	public void foundPawprint() {
 		pawprintName.setVisible(false);
 
 	}
 
-	void foundDiamond() {
-
+	public void foundDiamond() {
 		diamondName.setVisible(false);
-
 	}
 
-	void foundSnake() {
-
+	public void foundSnake() {
 		snakeName.setVisible(false);
-
 	}
 
-	void foundBalloon() {
-
+	public void foundBalloon() {
 		balloonName.setVisible(false);
-
 	}
 
-	void foundApple() {
-
+	public void foundApple() {
 		appleName.setVisible(false);
-
 	}
 
-	void foundBow() {
+	public void foundBow() {
 
 		bowName.setVisible(false);
 
 	}
 
-	void foundRose() {
-
+	public void foundRose() {
 		roseName.setVisible(false);
-
 	}
 
-	void foundCloud() {
-
+	public void foundCloud() {
 		cloudName.setVisible(false);
+	}
 
+	public void foundChicken() {
+		chickenName.setVisible(false);
 	}
 	
-	void foundChicken() {
-		
-		chickenName.setVisible(false);
-		
-	}
-	void foundEarth() {
-		
+	public void foundEarth() {
 		earthName.setVisible(false);
-		
 	}
-	void foundCactus() {
-		
-		cactusName.setVisible(false);
-		
-	}
-	void showTime(int time) {
-		
 
-	timeName.setText("Time: " + time);
-		
+	public void foundCactus() {
+		cactusName.setVisible(false);
+	}
+
+	public void showTime(int time) {
+		timeName.setText("Time: " + time);
 	}
 
 	@Override
